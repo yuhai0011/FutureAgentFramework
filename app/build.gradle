@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation project(":lib")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
