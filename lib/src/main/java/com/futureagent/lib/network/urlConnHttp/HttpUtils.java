@@ -3,7 +3,7 @@ package com.futureagent.lib.network.urlConnHttp;
 
 
 import com.futureagent.lib.config.LibConfigs;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -93,7 +93,7 @@ public class HttpUtils {
     public static String doGet(String urlStr, Map<String, String> paramsMap) {
         urlStr += parseGetParamMap(paramsMap);
         if (DEBUG) {
-            LogHelper.d(TAG, "doGet url:" + urlStr);
+            LogUtils.d(TAG, "doGet url:" + urlStr);
         }
         URL url;
         HttpURLConnection conn = null;
@@ -108,7 +108,7 @@ public class HttpUtils {
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             if (DEBUG) {
-                LogHelper.d(TAG, "doGet conn.getResponseCode:" + conn.getResponseCode());
+                LogUtils.d(TAG, "doGet conn.getResponseCode:" + conn.getResponseCode());
             }
             if (conn.getResponseCode() == 200) {
                 is = conn.getInputStream();
@@ -122,11 +122,11 @@ public class HttpUtils {
                 byteArrayOutputStream.flush();
                 return byteArrayOutputStream.toString();
             } else {
-                LogHelper.e(TAG, "responseCode code:" + conn.getResponseCode());
+                LogUtils.e(TAG, "responseCode code:" + conn.getResponseCode());
             }
         } catch (Exception e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "doGet Exception", e);
+                LogUtils.e(TAG, "doGet Exception", e);
             }
         } finally {
             try {
@@ -134,7 +134,7 @@ public class HttpUtils {
                     is.close();
             } catch (IOException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, "doGet IOException", e);
+                    LogUtils.e(TAG, "doGet IOException", e);
                 }
             }
             try {
@@ -142,7 +142,7 @@ public class HttpUtils {
                     byteArrayOutputStream.close();
             } catch (IOException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, "doGet IOException", e);
+                    LogUtils.e(TAG, "doGet IOException", e);
                 }
             }
             if (conn != null) {
@@ -184,7 +184,7 @@ public class HttpUtils {
         BufferedReader in = null;
         String result = "";
         if (DEBUG) {
-            LogHelper.d(TAG, "doPost url:" + url + ", param:" + param);
+            LogUtils.d(TAG, "doPost url:" + url + ", param:" + param);
         }
         try {
             URL realUrl = new URL(url);
@@ -236,7 +236,7 @@ public class HttpUtils {
             }
         }
         if (DEBUG) {
-            LogHelper.d(TAG, "doPost result:" + result);
+            LogUtils.d(TAG, "doPost result:" + result);
         }
         return result;
     }

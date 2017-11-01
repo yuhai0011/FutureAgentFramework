@@ -3,7 +3,6 @@ package com.futureagent.lib.network.asyncHttp.entity;
 import android.content.Context;
 
 import com.futureagent.lib.utils.IdManager;
-import com.futureagent.lib.utils.LogHelper;
 import com.futureagent.lib.utils.Md5Manager;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
@@ -108,7 +107,7 @@ public class HttpRequestEntity {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            LogHelper.e("", "头像文件为空");
+            LogUtils.e("", "头像文件为空");
         }
 
         return params;

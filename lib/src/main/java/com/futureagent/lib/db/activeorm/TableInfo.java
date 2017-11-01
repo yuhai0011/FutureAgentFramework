@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.db.activeorm.annotation.Column;
 import com.futureagent.lib.db.activeorm.annotation.Table;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.ReflectUtil;
 
 import java.lang.reflect.Field;
@@ -102,7 +102,7 @@ public final class TableInfo {
                 return type.getDeclaredField("mId");
             } catch (NoSuchFieldException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, "Impossible!", e);
+                    LogUtils.e(TAG, "Impossible!", e);
                 }
             }
         } else if (type.getSuperclass() != null) {

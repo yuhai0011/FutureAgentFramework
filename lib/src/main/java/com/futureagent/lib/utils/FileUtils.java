@@ -35,7 +35,7 @@ public class FileUtils {
                 target.close();
         } catch (IOException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "Failed to close the target", e);
+                LogUtils.w(TAG, "Failed to close the target", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class FileUtils {
                 target.close();
         } catch (IOException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "Failed to close the target", e);
+                LogUtils.w(TAG, "Failed to close the target", e);
         }
     }
 
@@ -80,7 +80,7 @@ public class FileUtils {
                 file.delete();
             }
         } else {
-            LogHelper.i(TAG, "Cannot delete " + file.getAbsolutePath() + ", which not found");
+            LogUtils.i(TAG, "Cannot delete " + file.getAbsolutePath() + ", which not found");
         }
     }
 
@@ -164,9 +164,9 @@ public class FileUtils {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            LogHelper.w(TAG, "Unexpected excetion: ", e);
+            LogUtils.w(TAG, "Unexpected excetion: ", e);
         } catch (IOException e) {
-            LogHelper.w(TAG, "Unexpected excetion", e);
+            LogUtils.w(TAG, "Unexpected excetion", e);
         } finally {
             FileUtils.close(fis);
         }
@@ -183,9 +183,9 @@ public class FileUtils {
             fis = new FileInputStream(filename);
             return readStreamAsString(fis);
         } catch (FileNotFoundException e) {
-            LogHelper.w(TAG, "Unexpected excetion: ", e);
+            LogUtils.w(TAG, "Unexpected excetion: ", e);
         } catch (IOException e) {
-            LogHelper.w(TAG, "Unexpected excetion", e);
+            LogUtils.w(TAG, "Unexpected excetion", e);
         } finally {
             FileUtils.close(fis);
         }

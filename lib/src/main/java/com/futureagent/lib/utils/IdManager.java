@@ -49,7 +49,7 @@ public class IdManager {
         UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
         String deviceId = deviceUuid.toString();
 
-        LogHelper.d("deviceId", deviceId);
+        LogUtils.d("deviceId", deviceId);
         return deviceId;
     }
 }

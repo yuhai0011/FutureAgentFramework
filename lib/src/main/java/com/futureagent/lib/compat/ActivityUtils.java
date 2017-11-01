@@ -14,7 +14,7 @@ import android.util.Pair;
 
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.utils.Constants;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.SysManagerUtils;
 
 import java.util.List;
@@ -60,14 +60,14 @@ public class ActivityUtils {
                 return taskList.get(0).topActivity;
             } else {
                 if (DEBUG) {
-                    LogHelper.d(TAG, "getTopActivityV20 taskList is null or empty");
+                    LogUtils.d(TAG, "getTopActivityV20 taskList is null or empty");
                 }
             }
         } catch (Exception e) {
             // should not be here, but in some system, the getRunningTasks will
             // fail with crash...
             if (DEBUG) {
-                LogHelper.d(TAG, "getTopActivityV20 exception:" + e.getMessage());
+                LogUtils.d(TAG, "getTopActivityV20 exception:" + e.getMessage());
             }
         }
         return null;

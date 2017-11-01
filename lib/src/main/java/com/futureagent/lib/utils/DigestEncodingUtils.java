@@ -46,7 +46,7 @@ public class DigestEncodingUtils {
     @TargetApi(Build.VERSION_CODES.FROYO)
     public static String encodeBase64String(byte[] data) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.FROYO) {
-            LogHelper.e(TAG, "This API is not supported on platforms older than Froyo");
+            LogUtils.e(TAG, "This API is not supported on platforms older than Froyo");
             return null;
         }
         return Base64.encodeToString(data, Base64.NO_WRAP);
@@ -63,7 +63,7 @@ public class DigestEncodingUtils {
             md5.update(data);
             return encodeHexString(md5.digest());
         } catch (NoSuchAlgorithmException e) {
-            LogHelper.w(TAG, "Should never happen!", e);
+            LogUtils.w(TAG, "Should never happen!", e);
         }
         return null;
     }
@@ -79,7 +79,7 @@ public class DigestEncodingUtils {
         try {
             return computeMd5HexString(data.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            LogHelper.w(TAG, "should never happen!", e);
+            LogUtils.w(TAG, "should never happen!", e);
         }
         return null;
     }
@@ -99,9 +99,9 @@ public class DigestEncodingUtils {
             }
             return encodeHexString(messageDigest.digest());
         } catch (NoSuchAlgorithmException e) {
-            LogHelper.w(TAG, "Should never happen!", e);
+            LogUtils.w(TAG, "Should never happen!", e);
         } catch (IOException e) {
-            LogHelper.w(TAG, "unexpected exception happened", e);
+            LogUtils.w(TAG, "unexpected exception happened", e);
         }
 
         return null;
@@ -123,7 +123,7 @@ public class DigestEncodingUtils {
             fis = new FileInputStream(apkFile);
             return computeMd5HexString(fis);
         } catch (FileNotFoundException e) {
-            LogHelper.w(TAG, "should not happen", e);
+            LogUtils.w(TAG, "should not happen", e);
         } finally {
             FileUtils.close(fis);
         }

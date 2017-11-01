@@ -34,7 +34,7 @@ public class LogUtils {
     public static void d(String msg)
     {
         if (DEBUG)
-            Log.d(TAG, msg);
+            Log.i(TAG, msg);
     }
 
     public static void e(String msg)
@@ -64,10 +64,31 @@ public class LogUtils {
         }
     }
 
+    public static void w(String tag, String msg)
+    {
+        if (DEBUG) {
+            Log.w(TAG, getLogMsg(tag, msg));
+        }
+    }
+
+    public static void w(String tag, String msg, Exception e)
+    {
+        if (DEBUG) {
+            Log.w(TAG, getLogMsg(tag, msg + e.getMessage()));
+        }
+    }
+
     public static void e(String tag, String msg)
     {
         if (DEBUG) {
-            Log.i(TAG, getLogMsg(tag, msg));
+            Log.e(TAG, getLogMsg(tag, msg));
+        }
+    }
+
+    public static void e(String tag, String msg, Exception e)
+    {
+        if (DEBUG) {
+            Log.e(TAG, getLogMsg(tag, msg + e.getMessage()));
         }
     }
 

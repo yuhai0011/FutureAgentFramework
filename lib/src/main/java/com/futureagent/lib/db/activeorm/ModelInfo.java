@@ -8,7 +8,7 @@ import com.futureagent.lib.db.activeorm.serializer.FileSerializer;
 import com.futureagent.lib.db.activeorm.serializer.SqlDateSerializer;
 import com.futureagent.lib.db.activeorm.serializer.TypeSerializer;
 import com.futureagent.lib.db.activeorm.serializer.UtilDateSerializer;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.ReflectUtil;
 
 import java.io.File;
@@ -56,13 +56,13 @@ final class ModelInfo {
                 scanForModel(configuration.getContext());
             } catch (IOException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, "Couldn't open source path.", e);
+                    LogUtils.e(TAG, "Couldn't open source path.", e);
                 }
             }
         }
 
         if (DEBUG) {
-            LogHelper.d(TAG, "ModelInfo loaded.");
+            LogUtils.d(TAG, "ModelInfo loaded.");
         }
     }
 
@@ -107,11 +107,11 @@ final class ModelInfo {
                     mTypeSerializers.put(instance.getDeserializedType(), instance);
                 } catch (InstantiationException e) {
                     if (DEBUG) {
-                        LogHelper.e(TAG, "Couldn't instantiate TypeSerializer.", e);
+                        LogUtils.e(TAG, "Couldn't instantiate TypeSerializer.", e);
                     }
                 } catch (IllegalAccessException e) {
                     if (DEBUG) {
-                        LogHelper.e(TAG, "IllegalAccessException", e);
+                        LogUtils.e(TAG, "IllegalAccessException", e);
                     }
                 }
             }
@@ -121,7 +121,7 @@ final class ModelInfo {
     }
 
     private void scanForModel(Context context) throws IOException {
-        LogHelper.d("skywalker", "scanForModel begin");
+        LogUtils.d("skywalker", "scanForModel begin");
         String packageName = context.getPackageName();
         String sourcePath = context.getApplicationInfo().sourceDir;
         List<String> paths = new ArrayList<>();
@@ -151,7 +151,7 @@ final class ModelInfo {
             File file = new File(path);
             scanForModelClasses(file, packageName, context.getClassLoader());
         }
-        LogHelper.d("skywalker", "scanForModel end");
+        LogUtils.d("skywalker", "scanForModel end");
     }
 
     private void scanForModelClasses(File path, String packageName, ClassLoader classLoader) {
@@ -187,7 +187,7 @@ final class ModelInfo {
                 scanClassTableInfo(discoveredClass);
             } catch (ClassNotFoundException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, "Couldn't create class.", e);
+                    LogUtils.e(TAG, "Couldn't create class.", e);
                 }
             }
         }
@@ -208,11 +208,11 @@ final class ModelInfo {
             }
         } catch (InstantiationException e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "Couldn't instantiate TypeSerializer.", e);
+                LogUtils.e(TAG, "Couldn't instantiate TypeSerializer.", e);
             }
         } catch (IllegalAccessException e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "IllegalAccessException", e);
+                LogUtils.e(TAG, "IllegalAccessException", e);
             }
         }
     }

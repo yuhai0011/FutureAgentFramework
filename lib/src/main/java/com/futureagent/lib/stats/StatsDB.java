@@ -6,7 +6,6 @@ import android.database.Cursor;
 
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.utils.DatabaseWrapper;
-import com.futureagent.lib.utils.LogHelper;
 import com.futureagent.lib.utils.TimeUtils;
 import com.futureagent.lib.utils.TokenManager;
 
@@ -82,7 +81,7 @@ class StatsDB {
 
     public void reportInfo(String key, String contentKey, int contentValue) {
         if (DEBUG) {
-            LogHelper.d(TAG, "reportInfo key:" + key + ", contentKey:" + contentKey);
+            LogUtils.d(TAG, "reportInfo key:" + key + ", contentKey:" + contentKey);
         }
         ContentValues values = new ContentValues();
         values.put("token", TokenManager.getToken(mContext));
@@ -95,7 +94,7 @@ class StatsDB {
 
     public void reportInfo(String key, JSONObject data) {
         if (DEBUG) {
-            LogHelper.d(TAG, "reportInfo key:" + key + ", data:" + data.toString());
+            LogUtils.d(TAG, "reportInfo key:" + key + ", data:" + data.toString());
         }
         ContentValues values = new ContentValues();
         values.put("token", TokenManager.getToken(mContext));

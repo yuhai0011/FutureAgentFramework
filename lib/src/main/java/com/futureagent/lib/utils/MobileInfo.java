@@ -154,7 +154,7 @@ public class MobileInfo {
                         Point.class);
                 getRealSizeMethod.invoke(screen, pt);
             } catch (Exception e) {
-                LogHelper.w(TAG, "Unexpected exception: ", e);
+                LogUtils.w(TAG, "Unexpected exception: ", e);
                 screen.getSize(pt); // exclude window decor size (eg, statusbar)
             }
         } else {

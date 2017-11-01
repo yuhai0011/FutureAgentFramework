@@ -184,7 +184,7 @@ public class MemoryUtils {
                 String tArray[] = line.split(",");
                 if (tArray != null && tArray.length > 0) {
                     if (DEBUG) {
-                        LogHelper.d(TAG, "line-----" + line + " :" + tArray[tArray.length - 1]);
+                        LogUtils.d(TAG, "line-----" + line + " :" + tArray[tArray.length - 1]);
                     }
                     return StringUtils.parseInt(tArray[tArray.length - 1]);
                 }

@@ -17,7 +17,7 @@ import android.os.RemoteException;
 import android.util.Pair;
 
 import com.futureagent.lib.config.LibConfigs;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class SQLiteDbResolver {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void acquireDatabase(Uri uri, String dbInfoName) {
-        if (DEBUG) LogHelper.d(TAG, "acquireDatabase");
+        if (DEBUG) LogUtils.d(TAG, "acquireDatabase");
         if (uri == null || dbInfoName == null) {
             return;
         }
@@ -85,7 +85,7 @@ public class SQLiteDbResolver {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void releaseDataBase(Uri uri, String dbInfoName) {
-        if (DEBUG) LogHelper.d(TAG, "releaseDataBase ");
+        if (DEBUG) LogUtils.d(TAG, "releaseDataBase ");
         if (uri == null || dbInfoName == null) {
             return;
         }
@@ -128,7 +128,7 @@ public class SQLiteDbResolver {
      */
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String orderBy) {
-        if (DEBUG) LogHelper.d(TAG, "query");
+        if (DEBUG) LogUtils.d(TAG, "query");
         Cursor cursor = null;
         if (uri == null) {
             return cursor;
@@ -164,7 +164,7 @@ public class SQLiteDbResolver {
      * @return The URI for the newly inserted item.
      */
     public void insert(Uri uri, ContentValues values) {
-        if (DEBUG) LogHelper.d(TAG, "insert");
+        if (DEBUG) LogUtils.d(TAG, "insert");
         if (uri == null) {
             return;
         }
@@ -200,7 +200,7 @@ public class SQLiteDbResolver {
      * @throws SQLException
      */
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        if (DEBUG) LogHelper.d(TAG, "delete");
+        if (DEBUG) LogUtils.d(TAG, "delete");
         int rowId = -1;
         if (uri == null) {
             return rowId;
@@ -238,7 +238,7 @@ public class SQLiteDbResolver {
      * @return the number of rows affected.
      */
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        if (DEBUG) LogHelper.d(TAG, "update");
+        if (DEBUG) LogUtils.d(TAG, "update");
         int rowId = -1;
         if (uri == null) {
             return rowId;
@@ -285,7 +285,7 @@ public class SQLiteDbResolver {
     public ContentProviderResult[] applyBatch(String authority,
                                               ArrayList<ContentProviderOperation> operations)
             throws RemoteException, OperationApplicationException {
-        if (DEBUG) LogHelper.d(TAG, "applyBatch");
+        if (DEBUG) LogUtils.d(TAG, "applyBatch");
         ContentProviderResult[] results = null;
         if (authority == null) {
             throw new IllegalArgumentException("Unknown authority " + authority);

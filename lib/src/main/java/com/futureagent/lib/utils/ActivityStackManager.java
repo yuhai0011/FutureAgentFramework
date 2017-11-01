@@ -1,7 +1,6 @@
 package com.futureagent.lib.utils;
 
 
-import com.futureagent.lib.R;
 import com.futureagent.lib.view.BaseActivity;
 
 import java.util.Stack;
@@ -41,8 +40,6 @@ public class ActivityStackManager {
      */
     public void pushToStack(BaseActivity baseActivity) {
         getActivityStack().push(baseActivity);
-        PrefManager.putInt(baseActivity, baseActivity.getString(R.string.preference_activity_stack_size),
-                getActivityStack().size());
     }
 
     /**
@@ -50,8 +47,6 @@ public class ActivityStackManager {
      */
     public void popFromStack(BaseActivity baseActivity) {
         getActivityStack().remove(baseActivity);
-        PrefManager.putInt(baseActivity, baseActivity.getString(R.string.preference_activity_stack_size),
-                getActivityStack().size());
     }
 
     /**

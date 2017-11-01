@@ -10,7 +10,7 @@ import com.futureagent.lib.db.activeorm.utils.NaturalOrderComparator;
 import com.futureagent.lib.db.activeorm.utils.SQLiteUtils;
 import com.futureagent.lib.db.activeorm.utils.SqlParser;
 import com.futureagent.lib.utils.IoUtils;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -107,7 +107,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
             inputStream.close();
         } catch (IOException e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "Failed to open file", e);
+                LogUtils.e(TAG, "Failed to open file", e);
             }
         }
     }
@@ -120,7 +120,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
         if (SQLiteUtils.FOREIGN_KEYS_SUPPORTED) {
             db.execSQL("PRAGMA foreign_keys=ON;");
             if (DEBUG) {
-                LogHelper.i(TAG, "Foreign Keys supported. Enabling foreign key features.");
+                LogUtils.i(TAG, "Foreign Keys supported. Enabling foreign key features.");
             }
         }
     }
@@ -170,12 +170,12 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
                             migrationExecuted = true;
 
                             if (DEBUG) {
-                                LogHelper.i(TAG, file + " executed successfully.");
+                                LogUtils.i(TAG, file + " executed successfully.");
                             }
                         }
                     } catch (NumberFormatException e) {
                         if (DEBUG) {
-                            LogHelper.w(TAG, "Skipping invalidly named file: " + file, e);
+                            LogUtils.w(TAG, "Skipping invalidly named file: " + file, e);
                         }
                     }
                 }
@@ -185,7 +185,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
             }
         } catch (IOException e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "Failed to execute migrations.", e);
+                LogUtils.e(TAG, "Failed to execute migrations.", e);
             }
         }
 
@@ -209,7 +209,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
         } catch (IOException e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "Failed to execute " + file, e);
+                LogUtils.e(TAG, "Failed to execute " + file, e);
             }
 
         } finally {

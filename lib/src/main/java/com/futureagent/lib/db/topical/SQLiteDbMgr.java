@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import com.futureagent.lib.config.LibConfigs;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.util.HashMap;
 
@@ -40,13 +40,13 @@ public class SQLiteDbMgr {
     }
 
     private SQLiteDatabase acquireDatabase(Class<? extends SQLiteDbCreator> dbInfoClass) {
-        if (DEBUG) LogHelper.d(TAG, "acquire DB: " + dbInfoClass.getName());
+        if (DEBUG) LogUtils.d(TAG, "acquire DB: " + dbInfoClass.getName());
         SQLiteDatabase db;
         synchronized (SQLiteDbMgr.class) {
             DbInfo info = mOpenHelpers.get(dbInfoClass);
             if (info == null) {
                 try {
-                    if (DEBUG) LogHelper.d(TAG, "create DB: " + dbInfoClass.getName());
+                    if (DEBUG) LogUtils.d(TAG, "create DB: " + dbInfoClass.getName());
                     SQLiteDbCreator helper = dbInfoClass.newInstance();
                     info = new DbInfo();
                     info.db = helper.createDb(mAppContext);
@@ -58,20 +58,20 @@ public class SQLiteDbMgr {
             }
             info.referenceCount++;
             db = info.db;
-            if (DEBUG) LogHelper.d(TAG, "acquireDatabase referenceCount: " + info.referenceCount);
+            if (DEBUG) LogUtils.d(TAG, "acquireDatabase referenceCount: " + info.referenceCount);
         }
         return db;
     }
 
     private void releaseDatabase(Class<? extends SQLiteDbCreator> dbInfoClass) {
-        if (DEBUG) LogHelper.d(TAG, "release DB: " + dbInfoClass.getName());
+        if (DEBUG) LogUtils.d(TAG, "release DB: " + dbInfoClass.getName());
         synchronized (SQLiteDbMgr.class) {
             DbInfo info = mOpenHelpers.get(dbInfoClass);
             if (info != null) {
                 info.referenceCount--;
-                if (DEBUG) LogHelper.d(TAG, "releaseDatabase referenceCount: " + info.referenceCount);
+                if (DEBUG) LogUtils.d(TAG, "releaseDatabase referenceCount: " + info.referenceCount);
                 if (info.referenceCount == 0) {
-                    if (DEBUG) LogHelper.d(TAG, "close DB: " + dbInfoClass.getName());
+                    if (DEBUG) LogUtils.d(TAG, "close DB: " + dbInfoClass.getName());
                     if (info.db != null) {
                         info.db.close();
                         info.db = null;
@@ -83,7 +83,7 @@ public class SQLiteDbMgr {
     }
 
     private SQLiteDatabase acquireDatabaseByName(String dbClassName) {
-        if (DEBUG) LogHelper.d(TAG, "acquireDatabaseByName className: " + dbClassName);
+        if (DEBUG) LogUtils.d(TAG, "acquireDatabaseByName className: " + dbClassName);
         if (TextUtils.isEmpty(dbClassName)) {
             throw new RuntimeException("init sqlite db info error !");
         }
@@ -97,7 +97,7 @@ public class SQLiteDbMgr {
     }
 
     private void releaseDatabase(String dbClassName) {
-        if (DEBUG) LogHelper.d(TAG, "releaseDatabase DB: " + dbClassName);
+        if (DEBUG) LogUtils.d(TAG, "releaseDatabase DB: " + dbClassName);
         if (TextUtils.isEmpty(dbClassName)) {
             throw new RuntimeException("init sqlite db info error !");
         }

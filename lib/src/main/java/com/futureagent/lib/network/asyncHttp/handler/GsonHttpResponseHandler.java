@@ -10,7 +10,6 @@ import android.content.Context;
 
 import com.futureagent.lib.network.asyncHttp.Interface.INoConnect;
 import com.futureagent.lib.network.asyncHttp.entity.HttpResponseEntity;
-import com.futureagent.lib.utils.LogHelper;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 
 import org.json.JSONException;
@@ -58,7 +57,7 @@ public class GsonHttpResponseHandler<T> extends BaseJsonHttpResponseHandler<Http
     @Override
     protected HttpResponseEntity<T> parseResponse(String rawJsonData, boolean isFailure) throws
             Throwable {
-        LogHelper.d("skywalker", "GsonHttpResponseHandler parseResponse rawJsonData:" + rawJsonData);
+        LogUtils.d("skywalker", "GsonHttpResponseHandler parseResponse rawJsonData:" + rawJsonData);
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
         try {
             JSONObject jsonObject = new JSONObject(rawJsonData);
@@ -72,7 +71,7 @@ public class GsonHttpResponseHandler<T> extends BaseJsonHttpResponseHandler<Http
 
             httpResponseEntity.parseData(type);
         } catch (JSONException e) {
-            LogHelper.w("GsonHttpResponseHandler", "GsonHttpResponseHandler parseResponse json解析失败");
+            LogUtils.w("GsonHttpResponseHandler", "GsonHttpResponseHandler parseResponse json解析失败");
         }
         return httpResponseEntity;
     }

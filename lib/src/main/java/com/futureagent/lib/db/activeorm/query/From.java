@@ -8,7 +8,7 @@ import com.futureagent.lib.db.activeorm.Model;
 import com.futureagent.lib.db.activeorm.content.DBContentProvider;
 import com.futureagent.lib.db.activeorm.query.Join.JoinType;
 import com.futureagent.lib.db.activeorm.utils.SQLiteUtils;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -224,7 +224,7 @@ public final class From implements Sqlable {
         // Don't waste time building the string
         // unless we're going to log it.
         if (DEBUG) {
-            LogHelper.d(TAG, sqlString + " " + TextUtils.join(",", getArguments()));
+            LogUtils.d(TAG, sqlString + " " + TextUtils.join(",", getArguments()));
         }
 
         return sqlString;

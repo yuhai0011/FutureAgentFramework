@@ -8,7 +8,6 @@ import com.futureagent.lib.network.asyncHttp.Interface.IHttp;
 import com.futureagent.lib.network.asyncHttp.entity.HttpRequestEntity;
 import com.futureagent.lib.network.asyncHttp.handler.BaseGsonHttpResondHandler;
 import com.futureagent.lib.network.asyncHttp.handler.GsonHttpResponseHandler;
-import com.futureagent.lib.utils.LogHelper;
 import com.futureagent.lib.utils.NetWorkUtil;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
@@ -97,7 +96,7 @@ public class HttpManager implements IHttp {
             url = "";
         }
         String urlStr = URLConfig.getUrlHostSsl() + url;
-        LogHelper.e(TAG, "getUrl urlStr:" + urlStr);
+        LogUtils.e(TAG, "getUrl urlStr:" + urlStr);
         return urlStr;
     }
 
@@ -116,7 +115,7 @@ public class HttpManager implements IHttp {
 
         // 参数检查
         if (context == null) {
-            LogHelper.e(TAG, "httpPost context is null");
+            LogUtils.e(TAG, "httpPost context is null");
             return null;
         }
 
@@ -134,7 +133,7 @@ public class HttpManager implements IHttp {
                     callback
             );
         } else {
-            LogHelper.e(TAG, "httpPost NetWorkUtil is not connect");
+            LogUtils.e(TAG, "httpPost NetWorkUtil is not connect");
             if (callback != null) {
                 callback.onNoConnect();
             }

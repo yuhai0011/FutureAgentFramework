@@ -11,7 +11,7 @@ import com.futureagent.lib.db.activeorm.TableInfo;
 import com.futureagent.lib.db.activeorm.annotation.Column;
 import com.futureagent.lib.db.activeorm.annotation.Column.ConflictAction;
 import com.futureagent.lib.db.activeorm.serializer.TypeSerializer;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.ReflectUtil;
 
 import java.lang.reflect.Constructor;
@@ -300,7 +300,7 @@ public final class SQLiteUtils {
             }
         } else {
             if (DEBUG) {
-                LogHelper.e(TAG, "No type mapping for: " + type.toString());
+                LogUtils.e(TAG, "No type mapping for: " + type.toString());
             }
         }
 
@@ -345,7 +345,7 @@ public final class SQLiteUtils {
             );
         } catch (Exception e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "Failed to process cursor.", e);
+                LogUtils.e(TAG, "Failed to process cursor.", e);
             }
         }
 

@@ -114,7 +114,7 @@ public class ReflectUtil {
             ret = m.invoke(obj, args);
         } catch (Exception e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "callMethod", e);
+                LogUtils.e(TAG, "callMethod", e);
             }
             e.printStackTrace();
             throw new RuntimeException("callMethod failure", e);
@@ -128,7 +128,7 @@ public class ReflectUtil {
             ret = m.newInstance(args);
         } catch (Exception e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "callConstructor", e);
+                LogUtils.e(TAG, "callConstructor", e);
             }
             throw new RuntimeException("callConstructor failure", e);
         }
@@ -156,7 +156,7 @@ public class ReflectUtil {
             }
         } catch (Exception e) {
             if (DEBUG) {
-                LogHelper.e(TAG, "getMetaData", e);
+                LogUtils.e(TAG, "getMetaData", e);
             }
         }
 

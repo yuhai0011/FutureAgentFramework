@@ -14,7 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Pair;
 
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class SQLiteDbProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        LogHelper.d(TAG, "SQLiteDbProvider.oncreate");
+        LogUtils.d(TAG, "SQLiteDbProvider.oncreate");
         mCxt = getContext();
         return true;
     }
@@ -36,7 +36,7 @@ public class SQLiteDbProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        LogHelper.d(TAG, "SQLiteDbProvider.query");
+        LogUtils.d(TAG, "SQLiteDbProvider.query");
         Cursor cursor = null;
         Pair<String, String> dbInfo = SQLiteDbUtils.getDbInfo(uri);
         if (dbInfo == null) {
@@ -57,7 +57,7 @@ public class SQLiteDbProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        LogHelper.d(TAG, "SQLiteDbProvider.insert uri = " + uri.toString());
+        LogUtils.d(TAG, "SQLiteDbProvider.insert uri = " + uri.toString());
 
         if (uri == null) {
             return null;
@@ -80,7 +80,7 @@ public class SQLiteDbProvider extends ContentProvider {
             return ContentUris.withAppendedId(uri, rowId);
         } else {
 
-            LogHelper.d(TAG, "SQLiteDbProvider.insert method = " + operName);
+            LogUtils.d(TAG, "SQLiteDbProvider.insert method = " + operName);
 
             if (SQLiteDbConstants.OPER_DB_ACQUIRE.equals(operName)) {
                 SQLiteDbMgr.acquireDatabase(mCxt, dbInfo.first);
@@ -93,7 +93,7 @@ public class SQLiteDbProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        LogHelper.d(TAG, "SQLiteDbProvider.delete");
+        LogUtils.d(TAG, "SQLiteDbProvider.delete");
         int rowId = 0;
         if (uri == null) {
             return rowId;
@@ -116,7 +116,7 @@ public class SQLiteDbProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        LogHelper.d(TAG, "SQLiteDbProvider.update");
+        LogUtils.d(TAG, "SQLiteDbProvider.update");
         int rowId = 0;
         if (uri == null) {
             return rowId;
@@ -144,7 +144,7 @@ public class SQLiteDbProvider extends ContentProvider {
     @Override
     public ContentProviderResult[] applyBatch(ArrayList<ContentProviderOperation> operations)
             throws OperationApplicationException {
-        LogHelper.d(TAG, "BaseProvider applyBatch");
+        LogUtils.d(TAG, "BaseProvider applyBatch");
         if (operations == null || operations.size() == 0) {
             return new ContentProviderResult[0];
         }

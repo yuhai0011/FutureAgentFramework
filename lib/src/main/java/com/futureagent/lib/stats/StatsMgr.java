@@ -5,7 +5,6 @@ import android.content.Context;
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.utils.Constants;
 import com.futureagent.lib.utils.HttpUtils;
-import com.futureagent.lib.utils.LogHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +66,7 @@ public class StatsMgr {
                     mStatsDB.deleAliveInfo(appAliveInfo.mId);
                 } else {
                     if (DEBUG) {
-                        LogHelper.d(TAG, "uploadAppAlive fail, msg:" + msg);
+                        LogUtils.d(TAG, "uploadAppAlive fail, msg:" + msg);
                     }
                 }
             } catch (JSONException e) {

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.db.activeorm.serializer.TypeSerializer;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.ReflectUtil;
 
 import java.util.ArrayList;
@@ -290,7 +290,7 @@ public class Configuration {
                     }
                 } catch (ClassNotFoundException e) {
                     if (DEBUG) {
-                        LogHelper.e(TAG, "Couldn't create class.", e);
+                        LogUtils.e(TAG, "Couldn't create class.", e);
                     }
                 }
             }
@@ -309,7 +309,7 @@ public class Configuration {
                     }
                 } catch (ClassNotFoundException e) {
                     if (DEBUG) {
-                        LogHelper.e(TAG, "Couldn't create class.", e);
+                        LogUtils.e(TAG, "Couldn't create class.", e);
                     }
                 }
             }

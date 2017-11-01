@@ -4,7 +4,7 @@ package com.futureagent.lib.compat;
 import android.os.IBinder;
 
 import com.futureagent.lib.config.LibConfigs;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,7 +27,7 @@ public class ServiceManagerUtils {
                     Thread.currentThread().getContextClassLoader());
         } catch (ClassNotFoundException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "class not found", e);
+                LogUtils.w(TAG, "class not found", e);
         }
     }
 
@@ -45,7 +45,7 @@ public class ServiceManagerUtils {
             sMtd_getService = sClass_ServiceManager.getMethod("getService", String.class);
         } catch (NoSuchMethodException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "method not found", e);
+                LogUtils.w(TAG, "method not found", e);
         }
     }
 
@@ -66,14 +66,14 @@ public class ServiceManagerUtils {
                 return (IBinder) sMtd_getService.invoke(null, name);
             } catch (IllegalAccessException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             } catch (InvocationTargetException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             }
         } else {
             if (DEBUG)
-                LogHelper.w(TAG, "#getService() not available");
+                LogUtils.w(TAG, "#getService() not available");
         }
         return null;
     }
@@ -88,7 +88,7 @@ public class ServiceManagerUtils {
             sMtd_checkService = sClass_ServiceManager.getMethod("checkService", String.class);
         } catch (NoSuchMethodException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "method not found", e);
+                LogUtils.w(TAG, "method not found", e);
         }
     }
 
@@ -103,14 +103,14 @@ public class ServiceManagerUtils {
                 return (IBinder) sMtd_checkService.invoke(null, name);
             } catch (IllegalAccessException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             } catch (InvocationTargetException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             }
         } else {
             if (DEBUG)
-                LogHelper.w(TAG, "#checkService() not available");
+                LogUtils.w(TAG, "#checkService() not available");
         }
         return null;
     }
@@ -126,7 +126,7 @@ public class ServiceManagerUtils {
                     String.class, IBinder.class);
         } catch (NoSuchMethodException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "method not found", e);
+                LogUtils.w(TAG, "method not found", e);
         }
     }
 
@@ -143,14 +143,14 @@ public class ServiceManagerUtils {
                 sMtd_addService.invoke(null, name, service);
             } catch (IllegalAccessException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             } catch (InvocationTargetException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             }
         } else {
             if (DEBUG)
-                LogHelper.w(TAG, "#addService() not available");
+                LogUtils.w(TAG, "#addService() not available");
         }
     }
 
@@ -164,7 +164,7 @@ public class ServiceManagerUtils {
             sMtd_listServices = sClass_ServiceManager.getMethod("listServices");
         } catch (NoSuchMethodException e) {
             if (DEBUG)
-                LogHelper.w(TAG, "method not found", e);
+                LogUtils.w(TAG, "method not found", e);
         }
     }
 
@@ -178,14 +178,14 @@ public class ServiceManagerUtils {
                 return (String[]) sMtd_listServices.invoke(null);
             } catch (IllegalAccessException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             } catch (InvocationTargetException e) {
                 if (DEBUG)
-                    LogHelper.w(TAG, "Failed to invoke #listServices()", e);
+                    LogUtils.w(TAG, "Failed to invoke #listServices()", e);
             }
         } else {
             if (DEBUG)
-                LogHelper.w(TAG, "#listServices() not available");
+                LogUtils.w(TAG, "#listServices() not available");
         }
         return null;
     }

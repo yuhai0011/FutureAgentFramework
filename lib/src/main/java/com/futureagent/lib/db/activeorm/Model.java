@@ -9,7 +9,7 @@ import com.futureagent.lib.db.activeorm.content.DBContentProvider;
 import com.futureagent.lib.db.activeorm.query.Delete;
 import com.futureagent.lib.db.activeorm.query.Select;
 import com.futureagent.lib.db.activeorm.serializer.TypeSerializer;
-import com.futureagent.lib.utils.LogHelper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.ReflectUtil;
 
 import java.lang.reflect.Field;
@@ -70,7 +70,7 @@ public abstract class Model {
 
         for (Field field : mTableInfo.getFields()) {
             final String fieldName = mTableInfo.getColumnName(field);
-            LogHelper.d(TAG, "save fieldName:" + fieldName);
+            LogUtils.d(TAG, "save fieldName:" + fieldName);
             Class<?> fieldType = field.getType();
 
             field.setAccessible(true);
@@ -89,7 +89,7 @@ public abstract class Model {
                             // check that the serializer returned what it promised
                             if (!fieldType.equals(typeSerializer.getSerializedType())) {
                                 if (DEBUG) {
-                                    LogHelper.w(TAG, String.format("TypeSerializer returned wrong type: expected a %s but got a %s",
+                                    LogUtils.w(TAG, String.format("TypeSerializer returned wrong type: expected a %s but got a %s",
                                             typeSerializer.getSerializedType(), fieldType));
                                 }
                             }
@@ -128,12 +128,12 @@ public abstract class Model {
                 }
             } catch (IllegalArgumentException | IllegalAccessException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, e.getClass().getName(), e);
+                    LogUtils.e(TAG, e.getClass().getName(), e);
                 }
             }
         }
 
-        LogHelper.d(TAG, "save values:" + values.toString());
+        LogUtils.d(TAG, "save values:" + values.toString());
         if (mId == null) {
             mId = db.insert(mTableInfo.getTableName(), null, values);
         } else {
@@ -236,15 +236,15 @@ public abstract class Model {
                 }
             } catch (IllegalArgumentException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, e.getClass().getName(), e);
+                    LogUtils.e(TAG, e.getClass().getName(), e);
                 }
             } catch (IllegalAccessException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, e.getClass().getName(), e);
+                    LogUtils.e(TAG, e.getClass().getName(), e);
                 }
             } catch (SecurityException e) {
                 if (DEBUG) {
-                    LogHelper.e(TAG, e.getClass().getName(), e);
+                    LogUtils.e(TAG, e.getClass().getName(), e);
                 }
             }
         }

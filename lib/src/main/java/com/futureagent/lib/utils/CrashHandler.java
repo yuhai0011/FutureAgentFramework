@@ -38,7 +38,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             return;
         }
         if (DEBUG) {
-            LogHelper.e(TAG, "uncaughtException", ex);
+            LogUtils.e(TAG, "uncaughtException", ex);
         }
 
         recordCrashInfo(ex);
@@ -86,7 +86,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         stringBuilder.append(cause + "\n");
         stringBuilder.append(exceptionType + "\n");
 
-        LogHelper.e(TAG, stringBuilder.toString());
+        LogUtils.e(TAG, stringBuilder.toString());
         //TODO save to file
     }
 
