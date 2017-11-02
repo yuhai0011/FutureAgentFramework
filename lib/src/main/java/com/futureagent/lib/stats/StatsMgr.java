@@ -67,7 +67,7 @@ public class StatsMgr {
                     mStatsDB.deleAliveInfo(appAliveInfo.mId);
                 } else {
                     if (DEBUG) {
-                        LogUtils.d(TAG, "uploadAppAlive fail, msg:" + msg);
+                        LogUtils.d(TAG, "uploadAppAlive failed, msg:" + msg);
                     }
                 }
             } catch (JSONException e) {
