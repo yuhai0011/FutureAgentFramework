@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.futureagent.lib.R;
-
 /**
  * @author skywalker
  * @date 15/12/18
@@ -26,19 +24,11 @@ import com.futureagent.lib.R;
 public final class DialogUtils {
 
     /**
-     * 对话框标题默认图标, 如果调用方法没有指定则使用此图片。.
-     */
-    public static final int DEFAULT_DIALOG_ICON = R.mipmap.ic_launcher;
-
-    /**
      * 使用系统默认图片。.
      */
     public static final int ICON_RES_ID_SYSTEM = -1;
 
-    /**
-     * 使用软件默认图片，即{@link DialogUtils#DEFAULT_DIALOG_ICON}。.
-     */
-    public static final int ICON_RES_ID_DEFAULT = 0;
+    public static final int ICON_RES_ID_DEFAULT = -1;
 
     /**
      * 字符串资源ID不指定，如果是标题或者内容将会置空，如果是按钮将会使用系统按钮文字。.
@@ -329,9 +319,7 @@ public final class DialogUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -546,9 +534,7 @@ public final class DialogUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -738,9 +724,7 @@ public final class DialogUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -900,9 +884,7 @@ public final class DialogUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -1096,9 +1078,7 @@ public final class DialogUtils {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -1191,9 +1171,7 @@ public final class DialogUtils {
         TimePickerDialog dialog = new TimePickerDialog(context, listener, hourOfDay, minute,
                 is24HourView);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            dialog.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             dialog.setIcon(iconResId);
         }
 
@@ -1437,9 +1415,7 @@ public final class DialogUtils {
 
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 
@@ -1485,9 +1461,7 @@ public final class DialogUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
 
-        if (iconResId == ICON_RES_ID_DEFAULT) {
-            builder.setIcon(DEFAULT_DIALOG_ICON);
-        } else if (iconResId != ICON_RES_ID_SYSTEM) {
+        if (iconResId != ICON_RES_ID_SYSTEM) {
             builder.setIcon(iconResId);
         }
 

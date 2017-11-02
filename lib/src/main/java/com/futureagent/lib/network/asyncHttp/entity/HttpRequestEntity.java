@@ -3,6 +3,7 @@ package com.futureagent.lib.network.asyncHttp.entity;
 import android.content.Context;
 
 import com.futureagent.lib.utils.IdManager;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.Md5Manager;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;

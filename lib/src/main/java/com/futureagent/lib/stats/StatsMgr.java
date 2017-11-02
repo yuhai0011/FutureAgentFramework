@@ -5,6 +5,7 @@ import android.content.Context;
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.utils.Constants;
 import com.futureagent.lib.utils.HttpUtils;
+import com.futureagent.lib.utils.LogUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

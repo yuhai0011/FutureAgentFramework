@@ -71,7 +71,7 @@ public class LogUtils {
         }
     }
 
-    public static void w(String tag, String msg, Exception e)
+    public static void w(String tag, String msg, Throwable e)
     {
         if (DEBUG) {
             Log.w(TAG, getLogMsg(tag, msg + e.getMessage()));
@@ -85,7 +85,7 @@ public class LogUtils {
         }
     }
 
-    public static void e(String tag, String msg, Exception e)
+    public static void e(String tag, String msg, Throwable e)
     {
         if (DEBUG) {
             Log.e(TAG, getLogMsg(tag, msg + e.getMessage()));

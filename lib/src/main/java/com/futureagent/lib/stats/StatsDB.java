@@ -6,6 +6,7 @@ import android.database.Cursor;
 
 import com.futureagent.lib.config.LibConfigs;
 import com.futureagent.lib.utils.DatabaseWrapper;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.TimeUtils;
 import com.futureagent.lib.utils.TokenManager;
 

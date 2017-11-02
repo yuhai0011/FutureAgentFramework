@@ -10,6 +10,7 @@ import android.content.Context;
 
 import com.futureagent.lib.network.asyncHttp.Interface.INoConnect;
 import com.futureagent.lib.network.asyncHttp.entity.HttpResponseEntity;
+import com.futureagent.lib.utils.LogUtils;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 
 import org.json.JSONException;

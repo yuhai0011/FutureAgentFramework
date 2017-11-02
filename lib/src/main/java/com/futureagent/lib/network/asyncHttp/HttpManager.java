@@ -8,6 +8,7 @@ import com.futureagent.lib.network.asyncHttp.Interface.IHttp;
 import com.futureagent.lib.network.asyncHttp.entity.HttpRequestEntity;
 import com.futureagent.lib.network.asyncHttp.handler.BaseGsonHttpResondHandler;
 import com.futureagent.lib.network.asyncHttp.handler.GsonHttpResponseHandler;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.NetWorkUtil;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
