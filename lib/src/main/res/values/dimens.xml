@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 字体大小 -->
+    <dimen name="XLL">20sp</dimen>
+    <dimen name="XL">18sp</dimen>
+    <dimen name="L">16sp</dimen>
+    <dimen name="M">14sp</dimen>
+    <dimen name="S">11sp</dimen>
+</resources>
