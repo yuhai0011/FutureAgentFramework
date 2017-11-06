@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.yuhai0011'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -55,6 +56,7 @@ dependencies {
     implementation rootProject.ext.dependencies["okhttp-urlconnection"]
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     implementation rootProject.ext.dependencies["otto"]
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["AsyncHttp"]
