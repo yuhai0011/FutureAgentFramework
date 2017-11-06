@@ -1,10 +1,10 @@
 package com.futureagent.lib.network;
 
-import com.squareup.okhttp.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
