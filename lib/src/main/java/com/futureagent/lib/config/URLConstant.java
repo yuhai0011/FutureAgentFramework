@@ -6,7 +6,7 @@ package com.futureagent.lib.config;
  * @description
  * @Email: yuhai833@126.com
  */
-public class URLConfig {
+public class URLConstant {
 
     private static IUrlEnvInterface mUrlEnvInterface;
 

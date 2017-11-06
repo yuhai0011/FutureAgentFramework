@@ -1,4 +1,4 @@
-package com.futureagent.lib.network.asyncHttp.entity;
+package com.futureagent.lib.entity;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
  */
 public class HttpResponseEntity<T> {
 
-    public static Gson gson = new Gson();
+    public static final Gson gson = new Gson();
     // 返回的描述
     private int status;
     // 返回码

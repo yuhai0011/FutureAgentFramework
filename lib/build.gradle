@@ -51,6 +51,7 @@ dependencies {
     implementation rootProject.ext.dependencies["numberprogressbar"]
     implementation rootProject.ext.dependencies["photoview"]
     implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["okhttp-urlconnection"]
     implementation rootProject.ext.dependencies["okhttp"]
