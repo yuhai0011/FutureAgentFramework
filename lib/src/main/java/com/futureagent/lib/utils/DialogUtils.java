@@ -9,11 +9,17 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.futureagent.lib.R;
+import com.futureagent.lib.view.dialog.CommonDialog;
+import com.futureagent.lib.view.dialog.DatePickerDialog;
 
 /**
  * @author skywalker
@@ -1551,6 +1557,99 @@ public final class DialogUtils {
         }
 
         return view;
+    }
+
+    /**
+     * 用户自定义对话框布局
+     *
+     * @param context        上下文
+     * @param layoutId       自定义布局
+     * @param clickToDismiss 点击外面是否dismiss对话框
+     * @return
+     */
+    public static Object[] coverDialogForUser(Context context, int layoutId, boolean clickToDismiss) {
+        CommonDialog coverDialog = new CommonDialog(context, false);
+        View view = coverDialog.setUserLayout(layoutId);
+        coverDialog.show();
+        coverDialog.setCanceledOnTouchOutside(clickToDismiss);
+        coverDialog.setCancelable(clickToDismiss);
+        Object[] returnValue = new Object[2];
+        returnValue[0] = view;
+        returnValue[1] = coverDialog;
+        return returnValue;
+    }
+
+    public static void coverDialogForDatePick(Context context, String title, DatePickerDialog.OnDatePickerSetListener
+            listener, int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minOfHour) {
+        int style = R.style.ModelDay_Dialog;
+        DatePickerDialog dialog = new DatePickerDialog(context, style);
+        dialog.setDialogTitle(title);
+        dialog.setDialogContent(listener, year, monthOfYear, dayOfMonth, hourOfDay, minOfHour);
+        dialog.show();
+    }
+
+    /**
+     * 使用Dialog显示信息
+     *
+     * @param context        上下文
+     * @param title          dialog标题
+     * @param msg            dialog正文
+     * @param okBtnText      确认按钮文案
+     * @param okListener     确定按钮事件
+     * @param cancelBtnText  取消按钮文案
+     * @param cancelListener 取消按钮事件
+     */
+    public static void showDialogForCommon(Context context, String title, String msg,
+                                           String okBtnText, View.OnClickListener okListener, String cancelBtnText,
+                                           View.OnClickListener cancelListener) {
+        showDialogForCommon(context, title, msg, okBtnText, okListener, cancelBtnText, cancelListener, true);
+    }
+
+    /**
+     * 适配点击dialog外面区域dismiss dialog
+     *
+     * @param context        上下文
+     * @param title          dialog标题
+     * @param msg            dialog正文
+     * @param okBtnText      确认按钮文案
+     * @param okListener     确定按钮事件
+     * @param cancelBtnText  取消按钮文案
+     * @param cancelListener 取消按钮事件
+     * @param clickToDismiss 点击外面是否dismiss对话框
+     */
+    public static void showDialogForCommon(Context context, String title, String msg,
+                                           String okBtnText, View.OnClickListener okListener, String cancelBtnText,
+                                           View.OnClickListener cancelListener, boolean clickToDismiss) {
+        showDialogForCommon(context, title, msg, okBtnText, okListener, cancelBtnText, cancelListener, true, false);
+    }
+
+    /**
+     * 适配点击dialog外面区域dismiss dialog
+     *
+     * @param context        上下文
+     * @param title          dialog标题
+     * @param msg            dialog正文
+     * @param okBtnText      确认按钮文案
+     * @param okListener     确定按钮事件
+     * @param cancelBtnText  取消按钮文案
+     * @param cancelListener 取消按钮事件
+     * @param clickToDismiss 点击外面是否dismiss对话框
+     * @param isSystem       是否系统对话框
+     */
+    public static void showDialogForCommon(Context context, String title, String msg,
+                                           String okBtnText, View.OnClickListener okListener, String cancelBtnText,
+                                           View.OnClickListener cancelListener, boolean clickToDismiss, boolean isSystem) {
+        CommonDialog dialog = new CommonDialog(context, !TextUtils.isEmpty(title));
+        dialog.setTitle(title);
+        dialog.setContent(msg);
+        dialog.setOkBtn(okBtnText, okListener);
+        dialog.setCancelBtn(cancelBtnText, cancelListener);
+        dialog.setCanceledOnTouchOutside(clickToDismiss);
+        dialog.setCancelable(clickToDismiss);
+        if (isSystem) {
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        }
+        dialog.show();
     }
 
     /**

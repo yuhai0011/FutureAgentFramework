@@ -149,4 +149,15 @@
     <color name="black">#000000</color> <!--黑色 -->
 
     <color name="title_bar_text">#ccffffff</color>
+    <color name="dialog_bg">#fafafa</color>
+    <color name="dialog_text_color">#FF383838</color>
+    <color name="dialog_button_color">#333333</color>
+    <color name="dialog_divider_color">#f8f8f8</color>
+    <color name="dialog_line_color">#eaeaea</color>
+
+    <color name="theme_color">@color/darkseagreen</color>
+    <color name="theme_blue">#2C87FF</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
 </resources>

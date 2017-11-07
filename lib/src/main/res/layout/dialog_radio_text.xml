@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/layout_background"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/dialog_width"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:background="@drawable/dialog_bg_day"
+              android:divider="@color/transparent"
+              android:orientation="vertical"
+              android:paddingLeft="23dp"
+              android:paddingRight="23dp"
+              android:showDividers="middle">
+
+    <TextView
+        android:id="@+id/txt_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/dialog_tips"
+        android:textColor="@color/dialog_text_color"
+        android:textSize="@dimen/dialog_text_size"/>
+
+    <TextView
+        android:id="@+id/txt_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="13dp"
+        android:textColor="#FF383838"
+        android:textSize="@dimen/dialog_text_size"/>
+
+    <RadioButton
+        android:id="@+id/radio_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:button="@null"
+        android:drawableLeft="@drawable/dialog_btn_radio"
+        android:drawablePadding="17dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="@string/dialog_not_show"
+        android:textColor="@color/dialog_text_color"
+        android:textSize="@dimen/dialog_text_size"/>
+
+    <Button
+        android:id="@+id/btn_ok"
+        style="@style/select_button_style"
+        android:layout_width="201dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/confirm"/>
+</LinearLayout>

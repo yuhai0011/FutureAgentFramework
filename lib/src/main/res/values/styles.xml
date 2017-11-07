@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="common_button_style">
+        <item name="android:textSize">@dimen/M</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:textColor">#4a4a4a</item>
+        <item name="android:background">@drawable/circle_normal_button_bg</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="select_button_style">
+        <item name="android:textSize">@dimen/M</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:textColor">@color/theme_color</item>
+        <item name="android:background">@drawable/circle_select_button_bg</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+</resources>

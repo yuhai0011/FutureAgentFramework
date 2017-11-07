@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_background"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg_day"
+    android:divider="@drawable/dialog_divider_day"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_date_picker_title_height"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/record_time_choose_title"
+        android:textColor="@color/dialog_button_color"
+        android:textSize="@dimen/XL" />
+
+    <LinearLayout
+        android:id="@+id/date_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_date_picker_content_height"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.futureagent.lib.view.dialog.NumberPicker
+            android:id="@+id/num_picker_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_margin_edge"
+            android:layout_weight="1" />
+
+        <com.futureagent.lib.view.dialog.NumberPicker
+            android:id="@+id/num_picker_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_divider"
+            android:layout_weight="1" />
+
+        <com.futureagent.lib.view.dialog.NumberPicker
+            android:id="@+id/num_picker_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_divider"
+            android:layout_weight="1" />
+
+        <com.futureagent.lib.view.dialog.NumberPicker
+            android:id="@+id/num_picker_hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_divider"
+            android:layout_weight="1" />
+
+        <com.futureagent.lib.view.dialog.NumberPicker
+            android:id="@+id/num_picker_min"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_divider"
+            android:layout_marginRight="@dimen/dialog_date_picker_content_margin_edge"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_date_picker_button_height"
+        android:divider="@drawable/dialog_divider_day"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_bg_day"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/cancel"
+            android:textColor="@color/dialog_button_color"
+            android:textSize="@dimen/L" />
+
+        <Button
+            android:id="@+id/button_confirm"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_bg_day"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/confirm"
+            android:textColor="@color/dialog_button_color"
+            android:textSize="@dimen/L" />
+    </LinearLayout>
+</LinearLayout>

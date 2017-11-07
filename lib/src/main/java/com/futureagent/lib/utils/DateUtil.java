@@ -148,6 +148,19 @@ public class DateUtil {
     }
 
     /**
+     * 给定year，monthOfYear，dayOfMonth
+     * 获取对应的timestamp
+     *
+     * @param year
+     * @param monthOfYear
+     * @param dayOfMonth
+     * @return
+     */
+    public static long timestampFromYearMonthDay(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minOfHour) {
+        return new GregorianCalendar(year, monthOfYear, dayOfMonth, hourOfDay, minOfHour).getTimeInMillis();
+    }
+
+    /**
      * Cover
      * 从生日时间获取对应的年份
      * @param birthday
@@ -181,6 +194,30 @@ public class DateUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(birthday);
         return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    /**
+     * 从生日时间获取对应的小时
+     *
+     * @param birthday
+     * @return
+     */
+    public static int hourOfDayFromBirthday(long birthday) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(birthday);
+        return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+
+    /**
+     * 从生日时间获取对应的天
+     *
+     * @param birthday
+     * @return
+     */
+    public static int minOfHourFromBirthday(long birthday) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(birthday);
+        return calendar.get(Calendar.MINUTE);
     }
 
     /**

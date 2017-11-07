@@ -6,4 +6,19 @@
     <dimen name="L">16sp</dimen>
     <dimen name="M">14sp</dimen>
     <dimen name="S">11sp</dimen>
+
+    <dimen name="dialog_width">297dp</dimen>
+    <dimen name="dialog_no_title_content_height">108dp</dimen>
+    <dimen name="dialog_title_margin_top">24dp</dimen>
+    <dimen name="dialog_content_margin_top">24dp</dimen>
+    <dimen name="dialog_content_margin_bottom">24dp</dimen>
+    <dimen name="dialog_button_height">48dp</dimen>
+    <dimen name="dialog_content_margin_edge">30dp</dimen>
+    <dimen name="dialog_list_item_height">52dp</dimen>
+    <dimen name="dialog_date_picker_title_height">52dp</dimen>
+    <dimen name="dialog_date_picker_content_height">206dp</dimen>
+    <dimen name="dialog_date_picker_content_divider">5dp</dimen>
+    <dimen name="dialog_date_picker_content_margin_edge">34dp</dimen>
+    <dimen name="dialog_date_picker_button_height">52dp</dimen>
+    <dimen name="dialog_text_size">14.4dp</dimen>
 </resources>
