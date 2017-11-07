@@ -1,11 +1,15 @@
 package com.futureagent.lib.image;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.request.RequestListener;
+import com.futureagent.lib.utils.FileUtils;
 
 import java.io.File;
 
@@ -20,6 +24,19 @@ public class ImageLoader {
      * 图片淡入时间
      */
     private static final int IMAGE_FADE_DURATION = 500;
+
+    /**
+     * ImageLoader初始化，开启app时调用
+     *
+     * @param context
+     */
+    public static void init(@NonNull final Context context) {
+        GlideBuilder builder = new GlideBuilder(context);
+
+        // disk cache
+        // 最大缓存500M
+        builder.setDiskCache(new DiskLruCacheFactory(FileUtils.getPrivateImageCacheDir(context).getAbsolutePath(), 500 * 1024 * 1024));
+    }
 
     public static void load(Context context, String url, ImageView imageView, int errId, int holderId) {
         Glide.with(context).load(url).placeholder(holderId).error(errId).crossFade(IMAGE_FADE_DURATION).into(imageView);
