@@ -20,7 +20,7 @@ import java.util.List;
  * Email: yuhai833@126.com
  * Description: 日期选择器，兼容Android各版本显示
  */
-public class DatePickerDialog extends Dialog {
+public class DateTimePickerDialog extends Dialog {
 
     private static int START_MONTH = 1, END_MONTH = 12;
 
@@ -46,7 +46,7 @@ public class DatePickerDialog extends Dialog {
     private Button mBtnConfirm;
     private Button mBtnCancel;
 
-    public DatePickerDialog(Context context, int resStyle) {
+    public DateTimePickerDialog(Context context, int resStyle) {
         super(context, resStyle);
         mContext = context;
         setContentView(R.layout.date_time_dialog);
@@ -159,14 +159,14 @@ public class DatePickerDialog extends Dialog {
             public void onClick(View arg0) {
                 listener.onDateSet(null, mNPYear.getValue(), mNPMonth.getValue() - 1, mNPDay.getValue(),
                         mNPHour.getValue(), mNPMin.getValue());
-                DatePickerDialog.this.dismiss();
+                DateTimePickerDialog.this.dismiss();
             }
         });
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                DatePickerDialog.this.dismiss();
+                DateTimePickerDialog.this.dismiss();
             }
         });
 

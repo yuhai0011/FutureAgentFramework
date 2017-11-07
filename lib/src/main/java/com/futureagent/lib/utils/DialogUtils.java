@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.futureagent.lib.R;
 import com.futureagent.lib.view.dialog.CommonDialog;
-import com.futureagent.lib.view.dialog.DatePickerDialog;
+import com.futureagent.lib.view.dialog.DateTimePickerDialog;
 
 /**
  * @author skywalker
@@ -1579,10 +1579,10 @@ public final class DialogUtils {
         return returnValue;
     }
 
-    public static void coverDialogForDatePick(Context context, String title, DatePickerDialog.OnDatePickerSetListener
+    public static void coverDialogForDatePick(Context context, String title, DateTimePickerDialog.OnDatePickerSetListener
             listener, int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minOfHour) {
         int style = R.style.ModelDay_Dialog;
-        DatePickerDialog dialog = new DatePickerDialog(context, style);
+        DateTimePickerDialog dialog = new DateTimePickerDialog(context, style);
         dialog.setDialogTitle(title);
         dialog.setDialogContent(listener, year, monthOfYear, dayOfMonth, hourOfDay, minOfHour);
         dialog.show();
