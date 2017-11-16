@@ -54,7 +54,7 @@ public class GsonHttpResonsedHandler<T> extends IGsonHttpResonsedHandler<T>
     }
 
     @Override
-    public void onFailure(int statusCode, Throwable throwable) {
+    public void onFailure(int statusCode, Throwable throwable, String rawJsonData, HttpResponseEntity<T> response) {
         LogUtils.e(TAG, "request onFailure");
 
         if (statusCode != STATUS_NET_ERROR && context != null) {
@@ -107,7 +107,7 @@ public class GsonHttpResonsedHandler<T> extends IGsonHttpResonsedHandler<T>
             DialogUtils.showToast(context, context.getString(R.string.http_no_connect));
         }
 
-        onFailure(STATUS_NO_CONNECT, null);
+        onFailure(STATUS_NO_CONNECT, null, "", null);
         onFinish();
     }
 
