@@ -3,6 +3,7 @@ package com.futureagent.lib.network.handler;
 import com.futureagent.lib.entity.HttpResponseEntity;
 import com.futureagent.lib.protocol.INoConnect;
 
+import java.io.File;
 import java.lang.reflect.ParameterizedType;
 
 public abstract class IGsonHttpResonsedHandler<T>
@@ -38,7 +39,15 @@ public abstract class IGsonHttpResonsedHandler<T>
 
     }
 
-    public void onFailure(int statusCode, Throwable throwable) {
+    public void onSuccess(int statusCode, File file) {
+
+    }
+
+    public void onFailure(int statusCode, Throwable throwable, String rawJsonData, HttpResponseEntity<T> response) {
+
+    }
+
+    public void onFailure(int statusCode, Throwable throwable, File file) {
 
     }
 
