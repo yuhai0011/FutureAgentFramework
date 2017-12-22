@@ -131,7 +131,9 @@ public class HttpManager {
                     dealFailure(handler, t);
                 }
             });
-
+            if (handler != null) {
+                handler.onCall(call);
+            }
             return call;
         }
     }
@@ -251,7 +253,9 @@ public class HttpManager {
                     dealFailure(handler, t);
                 }
             });
-
+            if (handler != null) {
+                handler.onCall(call);
+            }
             return call;
         }
     }
@@ -319,6 +323,9 @@ public class HttpManager {
 
             Call<ResponseBody> call = getRetrofitService(callback).httpDownFile(fileUrl);
             call.enqueue(callback);
+            if (handler != null) {
+                handler.onCall(call);
+            }
             return call;
         }
     }
