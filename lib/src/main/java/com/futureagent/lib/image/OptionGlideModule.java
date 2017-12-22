@@ -1,4 +1,4 @@
-package com.futureagent.lib.network.handler;
+package com.futureagent.lib.image;
 
 import android.content.Context;
 

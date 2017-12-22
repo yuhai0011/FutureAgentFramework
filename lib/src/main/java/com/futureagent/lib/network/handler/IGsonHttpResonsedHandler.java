@@ -6,6 +6,9 @@ import com.futureagent.lib.protocol.INoConnect;
 import java.io.File;
 import java.lang.reflect.ParameterizedType;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+
 public abstract class IGsonHttpResonsedHandler<T>
         implements
         INoConnect {
@@ -43,6 +46,10 @@ public abstract class IGsonHttpResonsedHandler<T>
 
     }
 
+    public void onLoading(long total, long progress) {
+
+    }
+
     public void onFailure(int statusCode, Throwable throwable, String rawJsonData, HttpResponseEntity<T> response) {
 
     }
@@ -56,6 +63,10 @@ public abstract class IGsonHttpResonsedHandler<T>
     }
 
     public void onFinish() {
+
+    }
+
+    public void onCall(Call<ResponseBody> call){
 
     }
 

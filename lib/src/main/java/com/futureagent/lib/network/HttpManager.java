@@ -6,6 +6,9 @@ import android.support.annotation.NonNull;
 import com.futureagent.lib.BuildConfig;
 import com.futureagent.lib.config.URLConstant;
 import com.futureagent.lib.entity.HttpRequestEntity;
+import com.futureagent.lib.network.body.FileRequestBody;
+import com.futureagent.lib.network.body.FileResponseBody;
+import com.futureagent.lib.network.callback.RetrofitCallback;
 import com.futureagent.lib.network.handler.IGsonHttpResonsedHandler;
 import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.NetWorkUtil;
@@ -18,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -27,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by skywalker on 2017/5/9.
@@ -163,30 +168,38 @@ public class HttpManager {
             ApiService repo = getApiService();
 
             for (File file : files) {
-                RequestBody requestFile =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), file);
-
-                MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-
-                String descriptionString = "File Upload";
-                RequestBody description =
-                        RequestBody.create(
-                                MediaType.parse("multipart/form-data"), descriptionString);
-
-                Call<ResponseBody> call = repo.httpUploadFile(url, description, body);
-                call.enqueue(new Callback<ResponseBody>() {
+                RetrofitCallback<ResponseBody> callback = new RetrofitCallback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                    public void onSuccess(Call<ResponseBody> call, Response<ResponseBody> response) {
                         dealResponse(handler, response);
+                        //进度更新结束
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, final Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         LogUtils.e(TAG, "Exception:" + t.getMessage());
                         dealFailure(handler, t);
                     }
-                });
+
+                    @Override
+                    public void onLoading(long total, long progress) {
+                        //此处进行进度更新
+                        if (handler != null) {
+                            handler.onLoading(total, progress);
+                        }
+                    }
+                };
+                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                MultipartBody.Part bodyPart =
+                        MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+                //通过该行代码将RequestBody转换成特定的FileRequestBody
+                FileRequestBody body = new FileRequestBody(requestBody, callback);
+                Call<ResponseBody> call = repo.httpUploadFile(url, body, bodyPart);
+                call.enqueue(callback);
+
+                if (handler != null) {
+                    handler.onCall(call);
+                }
             }
         }
     }
@@ -256,11 +269,7 @@ public class HttpManager {
         if (!NetWorkUtil.isConnected(context)) {
             handler.onNoConnect();
             return null;
-        }
-
-        // 手机有网络
-        else {
-
+        } else {// 手机有网络
             ThreadUtils.getInstance().runInUIThread(new Runnable() {
                 @Override
                 public void run() {
@@ -269,12 +278,9 @@ public class HttpManager {
                     }
                 }
             });
-
-            ApiService repo = getApiService();
-            Call<ResponseBody> call = repo.httpDownFile(fileUrl);
-            call.enqueue(new Callback<ResponseBody>() {
+            RetrofitCallback<ResponseBody> callback = new RetrofitCallback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                public void onSuccess(Call<ResponseBody> call, Response<ResponseBody> response) {
                     final boolean result = writeResponseBodyToDisk(response.body(), localFile);
                     ThreadUtils.getInstance().runInUIThread(new Runnable() {
                         @Override
@@ -295,16 +301,67 @@ public class HttpManager {
                         }
                     });
                 }
-
                 @Override
-                public void onFailure(Call<ResponseBody> call, final Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     LogUtils.e(TAG, "Exception:" + t.getMessage());
                     dealFailure(handler, t);
                 }
-            });
 
+                @Override
+                public void onLoading(long total, long progress){
+                    //更新下载进度
+                    if (handler != null) {
+                        handler.onLoading(total, progress);
+                    }
+                }
+
+            };
+
+            Call<ResponseBody> call = getRetrofitService(callback).httpDownFile(fileUrl);
+            call.enqueue(callback);
             return call;
         }
+    }
+
+    private <T> ApiService getRetrofitService(final RetrofitCallback<T> callback) {
+        OkHttpClient okhttpclient = new OkHttpClient.Builder()
+                .sslSocketFactory(FaSSLSocketFactory.createSSLSocketFactory(), FaSSLSocketFactory.createTrustAllManager())
+                .hostnameVerifier(new FaSSLSocketFactory.TrustAllHostnameVerifier())
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Response response = chain.proceed(chain.request());
+                        //将ResponseBody转换成我们需要的FileResponseBody
+                        return response.newBuilder().body(new FileResponseBody<T>(response.body(), callback)).build();
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getHostUrl())
+                .client(okhttpclient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(ApiService.class);
+    }
+
+    /**
+     * 获取网络请求通用接口
+     *
+     * @return
+     */
+    private ApiService getApiService() {
+        OkHttpClient okhttpclient = new OkHttpClient.Builder()
+                .sslSocketFactory(FaSSLSocketFactory.createSSLSocketFactory(), FaSSLSocketFactory.createTrustAllManager())
+                .hostnameVerifier(new FaSSLSocketFactory.TrustAllHostnameVerifier())
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getHostUrl())
+                .client(okhttpclient)
+                .build();
+        return retrofit.create(ApiService.class);
     }
 
     private boolean writeResponseBodyToDisk(ResponseBody body, File file) {
@@ -346,24 +403,6 @@ public class HttpManager {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    /**
-     * 获取网络请求通用接口
-     *
-     * @return
-     */
-    private ApiService getApiService() {
-        OkHttpClient okhttpclient = new OkHttpClient.Builder()
-                .sslSocketFactory(FaSSLSocketFactory.createSSLSocketFactory(), FaSSLSocketFactory.createTrustAllManager())
-                .hostnameVerifier(new FaSSLSocketFactory.TrustAllHostnameVerifier())
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getHostUrl())
-                .client(okhttpclient)
-                .build();
-        return retrofit.create(ApiService.class);
     }
 
     protected String getHostUrl() {
