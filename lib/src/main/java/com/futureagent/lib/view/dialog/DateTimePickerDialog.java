@@ -148,10 +148,10 @@ public class DateTimePickerDialog extends Dialog {
 
         mNPYear.setValue(year);
         mNPMonth.setValue(monthOfYear + 1);
+        setDayRange(year, monthOfYear + 1);
         mNPDay.setValue(dayOfMonth);
         mNPHour.setValue(hour);
         mNPMin.setValue(min);
-        setDayRange(year, monthOfYear + 1);
 
         mBtnConfirm.setOnClickListener(new View.OnClickListener() {
 

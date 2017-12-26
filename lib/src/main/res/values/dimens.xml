@@ -18,6 +18,7 @@
     <dimen name="dialog_date_picker_title_height">52dp</dimen>
     <dimen name="dialog_date_picker_content_height">206dp</dimen>
     <dimen name="dialog_date_picker_content_divider">5dp</dimen>
+    <dimen name="dialog_date_picker_content_hour_divider">5dp</dimen>
     <dimen name="dialog_date_picker_content_margin_edge">34dp</dimen>
     <dimen name="dialog_date_picker_button_height">52dp</dimen>
     <dimen name="dialog_text_size">14.4dp</dimen>

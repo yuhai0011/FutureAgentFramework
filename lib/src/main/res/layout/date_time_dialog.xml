@@ -51,7 +51,7 @@
             android:id="@+id/num_picker_hour"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dialog_date_picker_content_divider"
+            android:layout_marginLeft="@dimen/dialog_date_picker_content_hour_divider"
             android:layout_weight="1" />
 
         <com.futureagent.lib.view.dialog.NumberPicker
