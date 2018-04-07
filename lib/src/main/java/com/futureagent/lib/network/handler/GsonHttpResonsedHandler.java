@@ -80,7 +80,7 @@ public class GsonHttpResonsedHandler<T> extends IGsonHttpResonsedHandler<T>
             JSONObject jsonObject = new JSONObject(rawJsonData);
 
             int status = jsonObject.getInt("status");
-            String message = jsonObject.getString("message");
+            String message = jsonObject.getString("msg");
             String data = jsonObject.optString("data", "");
 
             httpResponseEntity.setStatus(status);
