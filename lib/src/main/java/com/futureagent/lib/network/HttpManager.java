@@ -59,7 +59,7 @@ public class HttpManager {
         return new HttpRequestEntity(context, hashMap).getParams();
     }
 
-    private HashMap getUrlParams(HashMap<String, Object> hashMap) {
+    public HashMap getUrlParams(HashMap<String, Object> hashMap) {
         HashMap<String, Object> urlParamMap = new HashMap<>();
         urlParamMap.put("vno", BuildConfig.VERSION_NAME);
         if (hashMap != null && hashMap.size() > 0) {
