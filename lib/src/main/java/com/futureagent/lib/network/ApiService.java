@@ -8,7 +8,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.FieldMap;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -43,21 +43,19 @@ public interface ApiService {
             @Url String fileUrl);
 
     @POST("{url}")
-    //@FormUrlEncoded
-    @Headers({"Content-type:application/x-www-form-urlencoded;charset=UTF-8"})
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     Call<ResponseBody> httpPost(
             @Path("url") String url,
             @QueryMap HashMap<String, Object> param,
-            @FieldMap HashMap<String, Object> entity);
+            @Body RequestBody route);
 
     @POST("{url}")
-    //@FormUrlEncoded
-    @Headers({"Content-type:application/x-www-form-urlencoded;charset=UTF-8"})
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     Call<ResponseBody> httpPost(
             @Path("url") String url,
             @Header("Authorization") String authorization,
             @QueryMap HashMap<String, Object> param,
-            @FieldMap HashMap<String, Object> entity);
+            @Body RequestBody route);
 
     @POST("{url}")
     @Multipart

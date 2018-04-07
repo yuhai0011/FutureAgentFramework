@@ -14,6 +14,8 @@ import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.NetWorkUtil;
 import com.futureagent.lib.utils.ThreadUtils;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -91,7 +93,7 @@ public class HttpManager {
      * @param params  接口参数map
      * @param handler 请求回调
      */
-    public Call<ResponseBody> httpPost(@NonNull Context context, @NonNull String url, HashMap params, @NonNull final IGsonHttpResonsedHandler handler) {
+    public Call<ResponseBody> httpPost(@NonNull Context context, @NonNull String url, JSONObject params, @NonNull final IGsonHttpResonsedHandler handler) {
 
         // 手机没有网络
         if (!NetWorkUtil.isConnected(context)) {
@@ -114,10 +116,12 @@ public class HttpManager {
 
             ApiService repo = getApiService();
             Call<ResponseBody> call;
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), params.toString());
             if (isLogin()) {
-                call = repo.httpPost(url, getLoginToken(), getUrlParams(null), getBodyParams(context, params));
+                call = repo.httpPost(url, getLoginToken(), getUrlParams(null), requestBody);
             } else {
-                call = repo.httpPost(url, getUrlParams(params), getBodyParams(context, params));
+
+                call = repo.httpPost(url, getUrlParams(null), requestBody);
             }
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
