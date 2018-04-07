@@ -9,7 +9,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -44,7 +43,7 @@ public interface ApiService {
             @Url String fileUrl);
 
     @POST("{url}")
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @Headers({"Content-type:application/x-www-form-urlencoded;charset=UTF-8"})
     Call<ResponseBody> httpPost(
             @Path("url") String url,
@@ -52,7 +51,7 @@ public interface ApiService {
             @FieldMap HashMap<String, Object> entity);
 
     @POST("{url}")
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @Headers({"Content-type:application/x-www-form-urlencoded;charset=UTF-8"})
     Call<ResponseBody> httpPost(
             @Path("url") String url,
