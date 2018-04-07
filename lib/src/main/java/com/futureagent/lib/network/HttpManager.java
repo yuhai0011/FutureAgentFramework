@@ -117,7 +117,7 @@ public class HttpManager {
             if (isLogin()) {
                 call = repo.httpPost(url, getLoginToken(), getUrlParams(null), getBodyParams(context, params));
             } else {
-                call = repo.httpPost(url, getUrlParams(null), getBodyParams(context, params));
+                call = repo.httpPost(url, getUrlParams(params), getBodyParams(context, params));
             }
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
