@@ -16,14 +16,8 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <!-- 占位layout -->
-    <!--<ViewStub-->
-    <!--android:id="@+id/empty"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:visibility="gone"/>-->
     <!-- 空页面 -->
-    <cn.thecover.www.covermedia.ui.widget.EmptyMessageView
+    <com.futureagent.lib.view.EmptyMessageView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
