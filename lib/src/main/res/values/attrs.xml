@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmptyMessageView">
+        <!-- 空页面设置 -->
+        <!-- 重试按钮默认为不显示,文字默认"重试",icon 默认 感叹号图标, 空页面文字默认为空 -->
+        <attr name="imageIcon" format="reference" />
+        <attr name="emptyInfoHint" format="reference|string" />
+        <attr name="retryBtnHint" format="reference|string" />
+        <attr name="viewHasRetryBtn" format="boolean" />
+        <attr name="viewHasTitle" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SuperRecyclerView">
+        <attr name="isRefresh" format="boolean" />
+        <attr name="isLoadMore" format="boolean" />
+        <attr name="swipeColor" format="reference" />
+        <!--<attr name="emptyLayout" format="reference"/>-->
+        <!-- 空页面设置 -->
+        <!-- 重试按钮默认为不显示,文字默认"重试",icon 默认 感叹号图标, 空页面文字默认为空 -->
+        <attr name="emptyImageIcon" format="reference" />
+        <attr name="emptyHint" format="reference|string" />
+        <attr name="emptyRetryBtnHint" format="reference|string" />
+        <attr name="emptyViewHasRetryBtn" format="boolean" />
+    </declare-styleable>
+</resources>

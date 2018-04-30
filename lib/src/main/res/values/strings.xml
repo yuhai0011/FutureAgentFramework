@@ -15,4 +15,10 @@
     <string name="dialog_not_show">不再提示</string>
 
     <string name="record_time_choose_title">请选择时间</string>
+
+    <string name="text_retry">重试</string>
+    <string name="text_net_work_error">网络错误</string>
+
+    <string name="update_news_size">成功为您更新了%1$d条信息</string>
+    <string name="textView_click_load_more">点击加载更多</string>
 </resources>

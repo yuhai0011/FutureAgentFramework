@@ -9,10 +9,6 @@ import com.bumptech.glide.module.GlideModule;
 import com.futureagent.lib.utils.FileUtils;
 
 
-/**
- * Created by tom on 17/5/18.
- */
-
 public class OptionGlideModule implements GlideModule {
 
     @Override
