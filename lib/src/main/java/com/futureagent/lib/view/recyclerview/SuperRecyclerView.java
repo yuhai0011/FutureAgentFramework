@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.futureagent.lib.R;
+import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.view.EmptyMessageView;
 
 /**
@@ -178,7 +179,9 @@ public class SuperRecyclerView extends RelativeLayout {
      */
     private void initView() {
         view = LayoutInflater.from(getContext()).inflate(R.layout.super_recycler_view, this, true);
-        recyclerView = view.findViewById(R.id.recycler_view);
+        View reView = view.findViewById(R.id.no_scroll_recycler_view);
+        LogUtils.i("skywalker", "initView reView.toString:" + reView.toString());
+        recyclerView = (NoAutoScrollRecyclerView) view.findViewById(R.id.no_scroll_recycler_view);
         swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
         emptyView = view.findViewById(R.id.empty_view);
         boxHint = view.findViewById(R.id.box_hint);

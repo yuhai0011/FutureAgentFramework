@@ -11,17 +11,25 @@ import com.futureagent.lib.entity.HttpResponseEntity;
 import com.futureagent.lib.network.HttpManager;
 import com.futureagent.lib.network.handler.GsonHttpResonsedHandler;
 import com.futureagent.lib.utils.LogUtils;
+import com.futureagent.lib.view.recyclerview.SuperRecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
+    @BindView(R.id.recycler_view)
+    SuperRecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         URLConstant.setDevEnv(new URLConfig());
 
