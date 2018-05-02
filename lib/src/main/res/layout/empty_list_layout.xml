@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:textColor="@color/black"
+        android:textColor="@color/avendeblack"
         android:textSize="@dimen/L"
         android:textStyle="bold"
         android:visibility="gone"/>
@@ -27,7 +27,7 @@
         android:gravity="center_horizontal"
         android:lineSpacingExtra="3dp"
         android:text=""
-        android:textColor="@color/black"
+        android:textColor="@color/avendeblack"
         android:textSize="@dimen/M"/>
 
     <Button
@@ -38,7 +38,7 @@
         android:layout_marginTop="@dimen/L"
         android:gravity="center"
         android:text="@string/text_retry"
-        android:textColor="@color/black"
+        android:textColor="@color/avendeblack"
         android:textSize="@dimen/L"/>
 
 </LinearLayout>
