@@ -62,4 +62,5 @@ dependencies {
     implementation rootProject.ext.dependencies["AsyncHttp"]
     implementation rootProject.ext.dependencies["universalImageLoader"]
     implementation rootProject.ext.dependencies["progress"]
+    implementation rootProject.ext.dependencies["utils"]
 }

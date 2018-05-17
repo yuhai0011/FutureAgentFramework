@@ -49,5 +49,6 @@ ext {
                     "eventBus"            : "de.greenrobot:eventbus:2.4.0",
                     "AsyncHttp"           : "com.loopj.android:android-async-http:1.4.9",
                     "glide"               : "com.github.bumptech.glide:glide:3.6.1",
-                    "progress"            : 'com.pnikosis:materialish-progress:1.7']
+                    "progress"            : "com.pnikosis:materialish-progress:1.7",
+                    "utils"               : "com.blankj:utilcode:1.10.0"]
 }
