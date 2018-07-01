@@ -14,8 +14,8 @@ import org.json.JSONObject;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Created by dangt on 15/12/4.
- * <p/>
+ * @author  by skywalker
+ *
  * http的回调处理类
  */
 public class GsonHttpResonsedHandler<T> extends IGsonHttpResonsedHandler<T>
