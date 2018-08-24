@@ -45,6 +45,7 @@ public class FileUtils {
     public final static String DIRECTORY_IMAGE = FILE_DIRECTORY_ROOT + "/image";
     public final static String DIRECTORY_VIDEO = FILE_DIRECTORY_ROOT + "/video";
     public final static String DIRECTORY_APK = FILE_DIRECTORY_ROOT + "/apk";
+    public final static String DIRECTORY_ID = FILE_DIRECTORY_ROOT + "/id";
 
     ////////// 私有文件缓存 //////////
 
@@ -124,6 +125,16 @@ public class FileUtils {
      */
     public static final File getPublicImageStoreDir(Context context) {
         return getPublicFileStoreDir(context, DIRECTORY_IMAGE);
+    }
+
+    /**
+     * 获取外部共享id文件路径
+     *
+     * @param context
+     * @return
+     */
+    public static final File getPublicIdDir(Context context) {
+        return getPublicFileStoreDir(context, DIRECTORY_ID);
     }
 
     /**

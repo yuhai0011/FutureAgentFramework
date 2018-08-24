@@ -1,15 +1,17 @@
 package com.futureagent.lib.network;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
-import com.futureagent.lib.BuildConfig;
 import com.futureagent.lib.config.URLConstant;
 import com.futureagent.lib.entity.HttpRequestEntity;
 import com.futureagent.lib.network.body.FileRequestBody;
 import com.futureagent.lib.network.body.FileResponseBody;
 import com.futureagent.lib.network.callback.RetrofitCallback;
 import com.futureagent.lib.network.handler.IGsonHttpResonsedHandler;
+import com.futureagent.lib.utils.IdManager;
 import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.utils.NetWorkUtil;
 import com.futureagent.lib.utils.ThreadUtils;
@@ -44,11 +46,47 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpManager {
     private static final String TAG = "HttpManager";
 
-    private HttpManager() {
+    private final static String KEY_TIMESTAMP = "timestamp";
+    private final static String KEY_SIGN = "sign";
+    private final static String KEY_DATA = "data";
+    private final static String KEY_CLIENT = "client";
+    private final static String KEY_VC = "vc";
+    private final static String KEY_VN = "vn";
+    private final static String KEY_DEVICEID = "deviceid";
+    private final static String KEY_CHANNEL = "channel";
+
+    private static HttpManager sInstance;
+
+    private Context mContext;
+    private int vc = 0;
+    private String vn = "";
+    private String deviceId = "";
+
+    private HttpManager(Context context) {
+        mContext = context.getApplicationContext();
+
+        try {
+            PackageInfo packageInfo = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+            vc = packageInfo.versionCode;
+            vn = packageInfo.versionName;
+            deviceId = IdManager.getDeviceId(mContext);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            vc = -1;
+            vn = "0.0";
+            deviceId = "deviceId";
+        }
     }
 
-    public static final HttpManager getInstance() {
-        return HttpManagerHolder.INSTANCE;
+    public static HttpManager getInstance(Context context) {
+        if (sInstance == null) {
+            synchronized (HttpManager.class) {
+                if (sInstance == null) {
+                    sInstance = new HttpManager(context);
+                }
+            }
+        }
+        return sInstance;
     }
 
     /**
@@ -63,7 +101,13 @@ public class HttpManager {
 
     public HashMap getUrlParams(HashMap<String, Object> hashMap) {
         HashMap<String, Object> urlParamMap = new HashMap<>();
-        urlParamMap.put("vno", BuildConfig.VERSION_NAME);
+        urlParamMap.put(KEY_VC, vc);
+        urlParamMap.put(KEY_VN, vn);
+        urlParamMap.put(KEY_DEVICEID, deviceId);
+        urlParamMap.put(KEY_CLIENT, "android");
+        urlParamMap.put(KEY_CHANNEL, "test");
+        urlParamMap.put(KEY_TIMESTAMP, System.currentTimeMillis());
+
         if (hashMap != null && hashMap.size() > 0) {
             for (String key : hashMap.keySet()) {
                 urlParamMap.put(key, hashMap.get(key));
@@ -474,10 +518,5 @@ public class HttpManager {
                 }
             }
         });
-    }
-
-    // 单例模式
-    private static class HttpManagerHolder {
-        private static final HttpManager INSTANCE = new HttpManager();
     }
 }

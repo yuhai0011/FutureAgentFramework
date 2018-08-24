@@ -2,7 +2,6 @@ package com.futureagent.lib.entity;
 
 import android.content.Context;
 
-import java.util.Date;
 import java.util.HashMap;
 
 
@@ -18,7 +17,6 @@ public class HttpRequestEntity {
     private String sign;
 
     // 固定参数的常量key
-    private final static String KEY_TIMESTAMP = "_timestamp";
     private HashMap<String, String> paramsMap;
 
     /**
@@ -30,9 +28,6 @@ public class HttpRequestEntity {
         } else {
             paramsMap = hashMap;
         }
-        timestamp = String.valueOf(new Date().getTime());
-
-        paramsMap.put(KEY_TIMESTAMP, timestamp);
     }
 
     /**
