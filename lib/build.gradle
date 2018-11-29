@@ -38,7 +38,13 @@ android {
     lintOptions {
         abortOnError false
     }
+}
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    google()
 }
 
 dependencies {
@@ -59,6 +65,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     implementation rootProject.ext.dependencies["otto"]
     implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["AsyncHttp"]
     implementation rootProject.ext.dependencies["universalImageLoader"]
     implementation rootProject.ext.dependencies["progress"]

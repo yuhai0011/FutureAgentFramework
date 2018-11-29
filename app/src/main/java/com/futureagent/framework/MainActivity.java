@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        HttpManager.getInstance().httpPost(this, "add", paramMap, new GsonHttpResonsedHandler<Object>(this) {
+        HttpManager.getInstance(this).httpPost(this, "add", paramMap, new GsonHttpResonsedHandler<Object>(this) {
             @Override
             public void onStart() {
                 super.onStart();
