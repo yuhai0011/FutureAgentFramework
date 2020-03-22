@@ -101,7 +101,7 @@ public class DeviceUtil {
 
                 LogUtils.d("deviceId", deviceId);
                 mDeviceId = deviceId;
-            } catch (SecurityException e) {
+            } catch (Exception e) {
 
                 // 兼容无权限的情况
                 if (FileUtils.isExternalStorageAvailable()) {
