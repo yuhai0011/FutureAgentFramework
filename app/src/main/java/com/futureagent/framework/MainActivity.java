@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_list);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         URLConstant.setDevEnv(new URLConfig());

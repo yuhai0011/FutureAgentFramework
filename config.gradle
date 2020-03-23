@@ -20,9 +20,9 @@
 ext {
 
     android = [compileSdkVersion: 28,
-               buildToolsVersion: "28.0.0",
+               buildToolsVersion: "28.0.3",
                applicationId    : "com.futureagent.framework",
-               minSdkVersion    : 17,
+               minSdkVersion    : 21,
                targetSdkVersion : 27,
                versionCode      : 2,
                versionName      : "1.0.1"]
