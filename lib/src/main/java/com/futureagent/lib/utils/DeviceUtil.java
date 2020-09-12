@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
@@ -85,76 +87,31 @@ public class DeviceUtil {
      * @return
      */
     public static String getDeviceId(Context context) {
-        if (TextUtils.isEmpty(mDeviceId)) {
-
-            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            final String fileName = "id";
-            try {
-                // 旧版本生成device_id
-                final String tmDevice, tmSerial, androidId;
-                tmDevice = "" + tm.getDeviceId();
-                tmSerial = "" + tm.getSimSerialNumber();
-                androidId = "" + android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-                UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
-                String deviceId = deviceUuid.toString();
-
-                LogUtils.d("deviceId", deviceId);
-                mDeviceId = deviceId;
-            } catch (Exception e) {
-
-                // 兼容无权限的情况
-                if (FileUtils.isExternalStorageAvailable()) {
-                    File idFile = new File(FileUtils.getPublicIdDir(context), fileName);
-
-                    if (idFile.exists()) {
-
-                        // 把数据读出来
-                        try {
-                            int length = (int) idFile.length();
-                            byte[] bytes = new byte[length];
-                            FileInputStream in = new FileInputStream(idFile);
-                            try {
-                                in.read(bytes);
-                            } finally {
-                                in.close();
-                            }
-                            mDeviceId = new String(bytes);
-                        } catch (FileNotFoundException e1) {
-                            e1.printStackTrace();
-                        } catch (IOException e2) {
-                            e2.printStackTrace();
-                        } catch (Exception e3) {
-                            e3.printStackTrace();
-                        }
-                    }
-                }
-            }
-
-            // 如果上述操作都失败了，则重新生成
-            if (TextUtils.isEmpty(mDeviceId)) {
-                String deviceId = PrefManager.getString(context, ShareConfig.SHARE_KEY_DEVICE_ID, "");
-                if (!TextUtils.isEmpty(deviceId)) {
-                    mDeviceId = deviceId;
-                } else {
-                    mDeviceId = UUID.randomUUID().toString();
-                    // 把数据存起来
-                    try {
-                        File idFile = new File(FileUtils.getPublicIdDir(context), fileName);
-                        idFile.createNewFile();
-                        FileOutputStream fileOutputStream = new FileOutputStream(idFile);
-                        fileOutputStream.write(mDeviceId.getBytes());
-                        fileOutputStream.close();
-
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-
-                        // 存在pref里面
-                        PrefManager.putString(context, ShareConfig.SHARE_KEY_DEVICE_ID, mDeviceId);
-                    }
-                }
-            }
+        if (!TextUtils.isEmpty(mDeviceId)) {
+            return mDeviceId;
         }
+        String serial = "";
+        String android_id = "";
+        String uuid = "";
+        String m_szDevIDShort = "future_agent" + Build.BOARD.length() % 10 + Build.BRAND.length() % 10 +
+                Build.CPU_ABI.length() % 10 + Build.DEVICE.length() % 10 +
+                Build.DISPLAY.length() % 10 + Build.HOST.length() % 10 +
+                Build.ID.length() % 10 + Build.MANUFACTURER.length() % 10 +
+                Build.MODEL.length() % 10 + Build.PRODUCT.length() % 10 +
+                Build.TAGS.length() % 10 + Build.TYPE.length() % 10 +
+                Build.USER.length() % 10;
+        try {
+            serial = android.os.Build.class.getField("SERIAL").get(null).toString();
+            android_id = "" + Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            uuid = new UUID(m_szDevIDShort.hashCode(), serial.hashCode() | android_id.hashCode()).toString();
+        } catch (Exception exception) {
+            //serial需要一个初始化
+            serial = "future_agent_serial"; // 给一个初始化值
+            android_id = "" + Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            uuid = new UUID(m_szDevIDShort.hashCode(), serial.hashCode() | android_id.hashCode()).toString();
+        }
+        //生成的deviceId加密一次
+        mDeviceId = SignFactory.getFinalDeviceId(uuid);
         return mDeviceId;
     }
 

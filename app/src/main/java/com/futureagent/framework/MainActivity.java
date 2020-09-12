@@ -10,6 +10,7 @@ import com.futureagent.lib.config.URLConstant;
 import com.futureagent.lib.entity.HttpResponseEntity;
 import com.futureagent.lib.network.HttpManager;
 import com.futureagent.lib.network.handler.GsonHttpResonsedHandler;
+import com.futureagent.lib.utils.IdManager;
 import com.futureagent.lib.utils.LogUtils;
 import com.futureagent.lib.view.recyclerview.SuperRecyclerView;
 
@@ -22,24 +23,24 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    @BindView(R.id.recycler_view)
-    SuperRecyclerView mRecyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.dialog_list);
         ButterKnife.bind(this);
 
         URLConstant.setDevEnv(new URLConfig());
 
-        TextView textView = findViewById(R.id.btn_post);
+        TextView textView = findViewById(R.id.dialog_title);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadToServer();
             }
         });
+
+        textView.setText(IdManager.getDeviceId(this));
     }
 
     private void uploadToServer() {
